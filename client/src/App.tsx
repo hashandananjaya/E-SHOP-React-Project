@@ -1,13 +1,23 @@
-import React from 'react';
-
+import React, {Component} from 'react';
 import './App.css';
+import Content from './components/Content';
 
-function App() {
-  return (
-    <div>
-      <h1 className="text-3xl text-blue-700">Hello</h1>
-    </div>
-  );
+export  default  class  App extends Component {
+    componentDidMount() : void{
+        console.log('App mounted');
+    }
+
+    render(): React.ReactElement {
+        return(
+           <div className= "App select-none">
+
+
+
+               <Content/>
+           </div>
+        );
+        
+    }
 }
 
-export default App;
+

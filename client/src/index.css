@@ -1,3 +1,15 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@tailwind base;/*globally used wena styles*/
+@tailwind components;/*component wlta drfault*/
+@tailwind utilities;/*utility styles*/
+
+@layer base  {/*globally danna oona styles mekata danawa*/
+    body {
+        @apply bg-gray-200;
+
+    }
+
+    aside {
+        @apply border-2 rounded-sm border-emerald-700 mt-2;
+    }
+
+}
