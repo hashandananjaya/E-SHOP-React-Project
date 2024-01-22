@@ -1,23 +1,23 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import './App.css';
-import Content from './components/Content';
+import Content from './pages/Contact';
 
-export  default  class  App extends Component {
-    componentDidMount() : void{
-        console.log('App mounted');
-    }
+export default class App extends Component {
 
-    render(): React.ReactElement {
-        return(
-           <div className= "App select-none">
+  componentDidMount(): void {
+      console.log('App mounted');
+  }
 
-
-
-               <Content/>
-           </div>
-        );
+  render(): React.ReactElement {
+    return (
+      <div className="App select-none">
         
-    }
-}
 
-
+        
+        <Content/>
+        
+        
+      </div>
+    );
+  }
+  }
