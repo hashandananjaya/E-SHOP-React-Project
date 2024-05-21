@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
-import Content from './pages/Contact';
+import Content from './components/Content'
 
 export default class App extends Component {
 
@@ -13,7 +13,7 @@ export default class App extends Component {
       <div className="App select-none">
         
 
-        
+         
         <Content/>
         
         

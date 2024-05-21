@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import Header from '../../components/Header/Header'
-import CartCard from '../../components/CartCard/CartCard'
+import CartCard from '../../components/CartCard/CartCart'
 
 export default class Cart extends Component {
   render() {
