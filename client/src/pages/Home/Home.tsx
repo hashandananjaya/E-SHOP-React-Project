@@ -39,6 +39,11 @@ export  default  class Home extends  Component<HomeProps, HomeState> {
                         <ItemCard/>
                         <ItemCard/>
                         <ItemCard/>
+                        <ItemCard/>
+                        <ItemCard/>
+                        <ItemCard/>
+                        <ItemCard/>
+                        
                         
 
                     </div>
