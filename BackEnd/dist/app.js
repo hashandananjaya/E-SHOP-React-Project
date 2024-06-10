@@ -1,41 +1,39 @@
-var createError = require('http-errors');
-var express = require('express');
-var path = require('path');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
-
-var indexRouter = require('../routes/index');
-var usersRouter = require('../routes/users');
-
-var app = express();
-
-// view engine setup
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'jade');
-
-app.use(logger('dev'));
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
-app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
-
-app.use('/', indexRouter);
-app.use('/users', usersRouter);
-
-// catch 404 and forward to error handler
-app.use(function(req, res, next) {
-  next(createError(404));
+"use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+const dotenv_1 = require("dotenv");
+// dotenv configuration
+(0, dotenv_1.config)();
+const express_1 = __importDefault(require("express"));
+const mongoose_1 = __importDefault(require("mongoose"));
+const body_parser_1 = require("body-parser");
+const cors_1 = __importDefault(require("cors"));
+const routes_1 = __importDefault(require("./routes"));
+const app = (0, express_1.default)();
+const allowedOrigins = ["http://loacalhost:4000"];
+app.use((0, cors_1.default)({
+    origin: (origin, callback) => {
+        if (allowedOrigins.indexOf(origin) !== -1 || !origin) {
+            callback(null, true);
+        }
+        else {
+            callback(new Error("Not allowed by CORS"));
+        }
+    },
+}));
+app.use((0, body_parser_1.json)());
+app.use((0, body_parser_1.urlencoded)({ extended: true }));
+app.use("/", routes_1.default);
+app.use((error, req, res) => {
+    res.status(500).json({ message: error.message });
 });
-
-// error handler
-app.use(function(err, req, res, next) {
-  // set locals, only providing error in development
-  res.locals.message = err.message;
-  res.locals.error = req.app.get('env') === 'development' ? err : {};
-
-  // render the error page
-  res.status(err.status || 500);
-  res.render('error');
+mongoose_1.default.connect(process.env.MONGO_DB_URL).then(() => {
+    console.log("DB Connected");
+    app.listen(process.env.PORT, () => {
+        console.log("Server is running on PORT : " + process.env.PORT);
+    });
+}).catch((error) => {
+    console.log("Something went wrong : " + error);
 });
-
-module.exports = app;

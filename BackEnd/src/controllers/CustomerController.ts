@@ -36,7 +36,7 @@ export default class CustomerController {
         }
         
     };
-    checkSingIn = async (req: Request, res:Response): Promise<Response> => {
+    checkSingIn = async (req:Request, res:Response): Promise<Response> => {
         try{
             const customer = await Customer.find();
             for(let index = 0; index < customer.length; index++) {
@@ -69,7 +69,7 @@ export default class CustomerController {
     geAllCustomers: RequestHandler = async (req: Request,res:Response): Promise<Response> => {
         try{
             const customer = await Customer.find();
-            return res.res.status(200).json({ responseDate: customer});
+            return res.status(200).json({ responseDate: customer});
         }catch (error:unknown) {
             if(error instanceof Error){
                 return res.status(500).json({ massage: error.message });

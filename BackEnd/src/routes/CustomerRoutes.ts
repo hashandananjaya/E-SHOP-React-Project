@@ -3,7 +3,7 @@ import CustomerController from "../controllers/CustomerController";
 
 
 export default class UserRoutes{
-    private router = express.Reuter();
+    private router = express.Router();
     private customerController: CustomerController = new CustomerController();
 
     constructor() {
@@ -13,8 +13,8 @@ export default class UserRoutes{
 
     private configRoutes = (): void => {
         this.router.post("/", this.customerController.createCustomer);
-        this.router.get("/", this.customerController.getAllCustomers);
-        this.router.get("/:email&:password", this.customerController.checkSignIn);
+        this.router.get("/", this.customerController.geAllCustomers);
+        this.router.get("/:email&:password", this.customerController.checkSingIn);
       };
     
       public getRouter = (): Router => {
